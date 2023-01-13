@@ -1,2 +1,3 @@
-# demo-php
-Based on thinkphp and vue or layui there is a web program but not defined
+#  Algorithm of JS
+### Pure JS code which I made by myself in free time
+There should be 5 test project codes for self reference, they come from my FCC test. 
