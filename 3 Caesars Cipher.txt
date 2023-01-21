@@ -1,0 +1,118 @@
+function rot13(str) {
+  
+  var strAz ="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  var regex =/\w/g;
+  var regex1 =/\D/g;
+  var strAzArr = strAz.match(regex);
+  console.log(strAz.length);
+  //console.log(strAzArr);
+  var strOriBig=str.toUpperCase();
+  var strOriArr0=strOriBig.match(regex1);
+  var strOriArr=strOriBig.match(regex);
+  console.log(strOriBig);
+  console.log(strOriArr0);
+ 
+  var strOriArrLet=strOriArr.join('');
+  console.log(strOriArrLet);
+  //console.log(strOriArrLet.indexOf(strOriBig[9]));
+  
+  //strOriArr0[2] = strAz[5+6+9];
+  //console.log(strOriArr0);
+  
+    var numArr=[];
+    for (let i=0; i<str.length;i++) 
+    { 
+      if (strOriArrLet.indexOf(strOriBig[i])>=0) 
+      {        
+      
+      for (let j=0; j<26;j++)
+      {
+
+      if(strOriBig[i]==strAz[j]){
+            numArr.push(j);        }
+      
+      }
+                 
+           
+      }
+
+
+    }
+   
+  console.log(numArr);
+    var numArrChanged=[];
+  for (let i=0; i<numArr.length; i++) {
+
+    if((numArr[i]+13)>25){
+
+          numArrChanged.push(numArr[i]+13-26);
+    }
+
+    else {
+            numArrChanged.push(numArr[i]+13);
+           
+            }
+  }
+  
+  console.log(numArrChanged);
+
+  var numArrChaAph = [];
+
+  for (let i=0; i<numArrChanged.length;i++)
+  
+  {
+      for (let j=0; j<26;j++)
+      {
+          if (numArrChanged[i]==j){
+
+            numArrChaAph.push(strAzArr[j]);
+          }
+
+      }
+
+  }
+
+   console.log(numArrChaAph);
+
+ for (let i=0; i<strOriBig.length;i++) 
+    { 
+      if (strOriArrLet.indexOf(strOriBig[i])>=0){
+
+            strOriArr0[i] = numArrChaAph[0];
+            numArrChaAph.shift();
+      }
+             
+    }
+
+
+  console.log(numArrChaAph);
+  console.log(strOriArr0);
+  var result = strOriArr0.join('');
+  console.log(result);
+  return result;
+}
+
+console.log(rot13("SERR YBIR?"));
+
+/*
+var a = "asdsadsaffsfas";
+
+var b = "????pooiwe";
+
+var regex = /\D/g;
+
+var a1=a.match(regex);
+var b1=b.match(regex);
+
+for (let i=0; i<b.length;i++)
+
+{
+
+a1[i] = b1[i];
+
+}
+
+console.log(a1);
+
+console.log(a1.join(''));
+*/
