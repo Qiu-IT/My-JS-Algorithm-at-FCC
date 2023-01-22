@@ -1,0 +1,50 @@
+function telephoneCheck(str) {
+  
+//var regex1 = /^[0-9]{3}(\-|\s?)[0-9]{3}(\-|\s?)[0-9]$/;
+//var regex3 = /[0-9]{3}(\-|\s?)[0-9]{3}(\-|\s?)[0-9]{4}$/;
+var regex2 = /^(1\s?)[0-9]{3}\-?\s?[0-9]{3}\-?\s?[0-9]{4}$/g;
+var regex3 = /^\([0-9]{3}\)\-?\s?[0-9]{3}\-?[0-9]{4}$/g;
+var regex4 = /[0-9]{3}\-?[0-9]{3}\-?[0-9]{4}$/g;
+var regex5 = /\d/g;
+var regex6 = /\([0-9]{3}\)/g;
+var regex7 = /^(1\s?)\([0-9]{3}\)\-?\s?[0-9]{3}\-?\s?[0-9]{4}$/g;
+
+/* console.log(str.match(regex2));
+  console.log(str.match(regex3));
+  console.log(str.match(regex4)); */
+  console.log(str.match(regex6));
+  console.log(regex6.test(str));
+
+if (str[0]==1){
+  
+     return regex2.test(str) || regex7.test(str) ;
+
+
+     
+  }
+
+else if (str[0]=="("){
+
+  return regex3.test(str) ;
+  
+ 
+}
+
+ 
+  return regex4.test(str) && str.match(regex5).length==10;
+
+}
+
+//console.log(telephoneCheck("1 555 555 5555"));
+//console.log(telephoneCheck("(555)555-5555"));
+console.log(telephoneCheck("1 555)555-5555"));
+//console.log(telephoneCheck("555)-555-5555"));
+//console.log(telephoneCheck("(555-555-5555"));
+
+/*
+var a = "()()())()()34444456";
+var regex =/[4]/;
+
+console.log(a.match(regex));
+*/
+
