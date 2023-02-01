@@ -1,0 +1,225 @@
+function checkCashRegister(price, cash, cid) {
+
+let cid0 = [["PENNY", 0.01], ["NICKEL", 0.05], ["DIME", 0.1], ["QUARTER", 0.25], ["ONE", 1], ["FIVE", 5], ["TEN", 10], ["TWENTY", 20], ["ONE HUNDRED", 100]]
+
+var coinSum = [];
+for (let i=0; i<8;i++ ){
+
+  coinSum.push(Math.round(cid[i][1]/cid0[i][1]));
+}
+
+console.log(coinSum);
+
+
+var boxSum = cid[0][1]+cid[1][1]+cid[2][1]+cid[3][1]+cid[4][1]+cid[5][1]+cid[6][1]+cid[7][1]+cid[8][1];
+
+boxSum = Math.round(boxSum*100)/100;
+console.log(boxSum);
+
+let result = {
+    status: '',
+    change: []
+    } 
+
+
+if ((cash-price)>boxSum) {
+
+  result.status='INSUFFICIENT_FUNDS';
+}
+
+else if((cash-price)==boxSum) {
+
+  result.status= "CLOSED";
+  result.change = cid;
+} 
+
+
+else {
+
+  if ((cid[0][1]+cid[1][1]+cid[2][1]+cid[3][1])<1){
+
+      result.status='INSUFFICIENT_FUNDS';
+  }
+  
+  
+  else {
+  result.status ='OPEN';
+  var total=0;
+  var diff = (cash*100-price*100);
+  var money =[];
+
+  for (let i=8; i>=0; i--) {
+
+    while ((total + cid0[i][1]*100)<=(diff) && coinSum[i]!==0) {
+
+        money.push(cid0[i][1]*100);
+        total +=cid0[i][1]*100;
+        coinSum[i]=coinSum[i]-1;
+    }
+
+
+  }
+
+  console.log(money.length);
+  console.log (total);
+
+  var pennySum = 0.00;
+  var nickelSum = 0;
+  var dimeSum =0;
+  var quarterSum = 0;
+  var dollarSum = 0;
+  var fivedollarSum = 0;
+  var tendollarSum = 0;
+  var twentydollarSum = 0;
+  var hdollarSum = 0;
+  
+  for (let j=0; j<money.length;j++){
+
+     if (money[j]==0.01*100){
+
+          pennySum =money[j] + pennySum;
+    }
+
+    else if (money[j]==0.05*100){
+
+          nickelSum +=money[j] ;
+    }
+
+    else if (money[j]==0.10*100){
+
+          dimeSum +=money[j] ;
+    }
+
+    else if (money[j]==0.25*100){
+
+          quarterSum +=money[j] ;
+    }
+
+  else if (money[j]==1*100){
+
+          dollarSum +=money[j] ;
+    }
+
+  else if (money[j]==5*100){
+
+          fivedollarSum +=money[j] ;
+    }
+
+  else if (money[j]==10*100){
+
+          tendollarSum +=money[j] ;
+    }
+ 
+  else if (money[j]==20*100){
+
+          twentydollarSum +=money[j] ;
+    }
+
+  else if (money[j]==100*100){
+
+          hdollarSum +=money[j] ;
+    }
+
+  }
+
+console.log(pennySum);
+
+
+var rsOri =[["PENNY",pennySum/100], ["NICKEL", nickelSum/100], ["DIME", dimeSum/100], ["QUARTER", quarterSum/100], ["ONE", dollarSum/100], ["FIVE",fivedollarSum/100], ["TEN", tendollarSum/100], ["TWENTY", twentydollarSum/100], ["ONE HUNDRED", hdollarSum/100]]
+
+
+// console.log(rsOri);
+
+var rsOriafter = [];
+for (let i=0; i<8; i++) {
+
+if (rsOri[i][1]>0)
+
+
+ rsOriafter.push(rsOri[i]);   
+
+}
+    // console.log(rsOriafter);
+    rsOriafter.reverse();
+
+    result.change = rsOriafter;
+
+}
+
+}
+
+
+  return result;
+}
+
+var rs = checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);
+
+console.log(rs);
+
+
+
+
+
+var a = 9;
+
+var b =[5,a];
+
+console.log(b);
+
+var c = [[0,1],[2,3],[4,5],[6,7],[8,9],[10,11]];
+var d = c[4][1];
+var e =[];
+e.push(c[0][1]);
+e.push(c[1][1]);
+e.push(c[2][1]);
+e.push(c[3][1]);
+
+
+console.log(e);
+
+/*
+var person = {
+  name : ['Bob', 'Smith'],
+  age : 32,
+  gender : 'male',
+  interests : ['music', 'skiing'],
+  bio : function() {
+    return this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.';
+  },
+  greeting: function() {
+    return 'Hi! I\'m ' + this.name[0] + '.';
+  }
+};
+
+
+console.log(person.name[0],person.age);
+person.age
+person.interests[1]
+person.bio()
+console.log(person.greeting());
+
+
+let result = {
+    status: '',
+
+    change: []
+    } 
+
+
+// var result = 5;
+
+if (2>1) {
+
+  result.status ='open';
+  result.change=[["ONE HUNDRED", 0]]
+}
+
+else {
+
+  result.status='close';
+  
+}
+
+console.log(result);
+
+*/
